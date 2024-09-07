@@ -1,0 +1,54 @@
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& arr) {
+        
+        int n=arr.size();
+        int s=0;
+        int e=n-1;
+        
+        
+        
+        while(s<=e){
+             int mid=s+(e-s)/2;
+             int leftval=-1;
+             int rightval=-1;
+             int currentval=arr[mid];
+             if(mid-1>=0){
+                leftval=arr[mid-1];
+              }
+             if(mid+1<n){
+                rightval=arr[mid+1];
+              }
+            // case 1 for single element
+             if(s==e){
+                return arr[s];
+             }
+            // case 2 we are on answer
+            if(currentval!=leftval && currentval!=rightval){
+                return currentval;
+            }
+            // case 3 duplicate is at left
+            if(currentval==leftval){
+                // int firstindex=mid-1;
+                if(mid-1 & 1){
+                    e=mid-1;
+                }
+                else{
+                    s=mid+1;
+                }
+            }
+            // case 4 duplicate is at right
+            if(currentval==rightval ){
+                // int firstindex=mid;
+                if(mid & 1){
+                    e=mid-1;
+                }
+                else{
+                    s=mid+1;
+                }
+            }
+            // mid=s+(e-s)/2;
+        }
+        return -1;
+    }
+    };
