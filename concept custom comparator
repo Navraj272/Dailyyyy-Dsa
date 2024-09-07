@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector> 
+#include <algorithm>
+using namespace std;
+int main()
+{
+    vector<vector<int>>v;
+    int n;
+    cout<<"give size input :";
+    cin>>n;
+    for(int i=0;i<=n;i++){
+       
+        int a;
+        int b;
+        cout<<"give input "<<n<<"times for a ";
+        cin>>a;
+        cout<<"give input "<<n<<"times for b ";
+        cin>>b;
+        vector<int>temp;
+        temp.push_back(a);
+        temp.push_back(b);
+        v.push_back(temp);
+    }
+    sort(v.begin(),v.end());
+    cout<<"printing your vector :";
+    for(int i=0;i<=v.size();i++){
+        vector<int>&temp=v[i];
+        cout<<temp[0]<<" ";
+        cout<<temp[1];
+        cout<<endl;
+    }
+
+    return 0;
+}
