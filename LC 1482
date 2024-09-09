@@ -1,0 +1,47 @@
+class Solution {
+public:
+    
+    bool bloomcalculation(vector<int>& bloomDay, int m ,int k, int days){
+        int counter=0;
+        for(int i=0;i<bloomDay.size();i++){
+            if(bloomDay[i]<=days){
+                counter++;
+            }
+            if(counter == k){
+                m--;
+                counter=0;
+                if(m==0)
+                 break;
+
+                
+            }
+            else if(bloomDay[i]>days){
+                counter=0;
+            }
+        }
+        return m==0;
+    }
+
+    int minDays(vector<int>& bloomDay, int m, int k) {
+        long long int condition= (double)m * (double)k;
+        int n=bloomDay.size();
+        if( n < condition) return -1;
+
+        int s=*min_element(bloomDay.begin(),bloomDay.end());
+        int e=*max_element(bloomDay.begin(),bloomDay.end());
+        int ans=0;
+        while(s<=e){
+            int mid=(s+e)>>1;
+            int days=mid;
+
+            if(bloomcalculation(bloomDay,m,k,days)){
+                ans=mid;
+                e=mid-1;
+
+            }
+            else
+                s=mid+1; 
+        }
+        return ans;
+    }
+};
