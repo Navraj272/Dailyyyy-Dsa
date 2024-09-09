@@ -1,0 +1,11 @@
+class Solution {
+public:
+    string removeOccurrences(string full, string part) {
+        while(full.find(part)!=-1){
+            
+            full.erase(full.find(part),part.length());
+
+        }
+        return full;
+    }
+};
