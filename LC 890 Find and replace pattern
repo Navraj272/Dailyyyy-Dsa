@@ -1,0 +1,39 @@
+class Solution {
+public:
+    
+    string normalization(string &str){
+        unordered_map<char,char> mapping;
+        char start='a';
+        for(int i=0;i<str.length();i++){
+            char current=str[i];
+            if(mapping.find(current) == mapping.end()){
+                mapping[current] = start;
+                start++;
+            }
+        }
+        // after mapping
+        string ans="";
+        for(int i=0;i<str.length();i++){
+            char currentchar=str[i];
+            char mappingg=mapping[currentchar];
+            str[i]=mappingg;
+            ans.push_back(mappingg);
+        }
+        return ans;
+    }
+
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        vector<string> ans;
+        normalization(pattern);
+
+        for(int i=0;i<words.size();i++){
+            string currentword=words[i];
+            string copychar=currentword;
+            normalization(copychar);
+            if(copychar.compare(pattern) == 0 ){
+                ans.push_back(currentword);
+            }
+        }
+        return ans;
+    }
+};
