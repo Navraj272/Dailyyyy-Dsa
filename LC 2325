@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        unordered_map<char,char> mapping;
+        // char space=' ';
+        mapping[' ']=' ';
+        int i=0;
+        char start='a';
+        // for the normal case
+        while(start<='z' && i<key.length()){
+            char current=key[i];
+            if(mapping.find(current) != mapping.end()){
+                i++;
+            }
+            else{
+                mapping[current]=start;
+                start++;
+                i++;
+            }
+        }
+        // for mapping
+        string ans="";
+        for (int i=0;i<message.length();i++){
+            char msgchar = message[i];
+            char mappedchar = mapping[msgchar];
+            ans.push_back(mappedchar);
+        }
+
+    return ans;
+    }
+};
