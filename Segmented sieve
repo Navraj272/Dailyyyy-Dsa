@@ -1,0 +1,37 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+int main()
+{   int n=130;
+    
+    if(n==0){
+        cout<<0;
+        return 0;
+    }
+    vector<bool> v(n,true);
+    v[0]=v[1]=false;
+    // int ans=0;
+    for(int i=2;i*i<n;i++){
+        if(v[i]==true){
+            int j=i*i;
+            while(j<n){
+                v[j]=false;
+                j=j+i;
+            }
+
+        }
+    //   cout<<ans;
+    }
+    int sum=0;
+    for(int i=100;i<n;i++){
+        
+        if(v[i]==true){
+             sum=sum+i;
+             cout<<i<<" ";
+        }
+        
+    }
+    cout<<endl<<"This is your sum : "<<sum;
+    
+    return 0;
+}
