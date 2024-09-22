@@ -1,0 +1,19 @@
+int sherlockAndAnagrams(string s) {
+    unordered_map<string, int>map;
+    int strcount=0;
+    for(int i=0;i<s.size();i++){
+        for(int j=i;j<s.size();j++){
+            string str=s.substr(i,j-i+1);
+            
+            sort(str.begin(),str.end());
+            
+            map[str]++;
+        }
+    }
+    for(auto it:map){
+        int count=it.second;
+        int total=count*(count-1)/2;
+        strcount=strcount+total;
+    }
+    return strcount;
+}
