@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int beautySum(string s) {
+        long beautySum=0;
+        unordered_map<char,int>map;
+        for(int i=0;i<s.size();i++){
+            for(int j=i;j<s.size();j++){
+                // char &ch=s[j];
+                map[char(s[j])]++;
+                
+                int maxfreq=INT_MIN;
+                int minfreq=INT_MAX;
+
+                for(auto it:map){
+                    maxfreq=max(maxfreq,it.second);
+                    minfreq=min(minfreq,it.second);
+                }
+
+                int beauty=maxfreq-minfreq;
+                beautySum +=beauty;  
+            }
+            map.clear();
+        }
+        return beautySum;
+    }
+};
